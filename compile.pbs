@@ -1,0 +1,19 @@
+#!/bin/bash
+#PBS -P MECH1739
+#PBS -l select=1:ncpus=24:mpiprocs=24:nodetype=haswell_reg
+#PBS -q smp
+#PBS -l walltime=00:30:00
+#PBS -o /mnt/lustre/users/smawe/openlb/examples/fsi/deformableParticleInShearFlow3d/compile.out
+#PBS -e /mnt/lustre/users/smawe/openlb/examples/fsi/deformableParticleInShearFlow3d/compile.err
+#PBS -m abe
+#PBS -M u26834911@tuks.co.za
+
+### Load MPI module with GCC 12
+module load chpc/compmech/openmpi/4.1.2-gcc-12.1.0
+
+### Go to example directory
+export PBS_JOBDIR=/mnt/lustre/users/smawe/openlb/examples/fsi/deformableParticleInShearFlow3d
+cd $PBS_JOBDIR
+
+### Compile
+make > make.out 2>&1
